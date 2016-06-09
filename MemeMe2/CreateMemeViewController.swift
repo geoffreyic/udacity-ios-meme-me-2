@@ -8,8 +8,11 @@
 
 import UIKit
 
-class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate{
+class CreateMemeViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate{
 	
+    // for saving meme to shared model (UIApplication.sharedApplication().delegate as! AppDelegate).memes.append(meme)
+    
+    
 	@IBOutlet weak var cameraButton: UIBarButtonItem!
 	@IBOutlet weak var imageSelected: UIImageView!
 	@IBOutlet weak var instructionText: UILabel!
