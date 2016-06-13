@@ -6,18 +6,17 @@
 //  Copyright © 2016 Geoffrey Ching. All rights reserved.
 //
 
+import Foundation
 import UIKit
 
 class CreateMemeViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate{
-	
-    // for saving meme to shared model (UIApplication.sharedApplication().delegate as! AppDelegate).memes.append(meme)
     
     
 	@IBOutlet weak var cameraButton: UIBarButtonItem!
 	@IBOutlet weak var imageSelected: UIImageView!
 	@IBOutlet weak var instructionText: UILabel!
 	@IBOutlet weak var topText: UITextField!
-	@IBOutlet weak var bottomText: UITextField!
+    @IBOutlet weak var bottomText: UITextField!
 	@IBOutlet weak var shareButton: UIBarButtonItem!
 	
 	
@@ -152,7 +151,9 @@ class CreateMemeViewController: UIViewController, UIImagePickerControllerDelegat
 		
 		aVC.completionWithItemsHandler = {activityType, completed, returnedItems, activityError in
 			if(completed){
-				_ = MemeModel(image: self.imageSelected.image!, topText: self.topText.attributedText!.string, bottomText: self.bottomText.attributedText!.string, memeImage:  memedImage)
+				let meme = MemeModel(image: self.imageSelected.image!, topText: self.topText.attributedText!.string, bottomText: self.bottomText.attributedText!.string, memeImage:  memedImage)
+                
+                (UIApplication.sharedApplication().delegate as! AppDelegate).memes.append(meme)
 			}
 		}
 		

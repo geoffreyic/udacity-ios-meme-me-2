@@ -9,7 +9,7 @@
         <!--Create Meme View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="CreateMemeViewController" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="CreateMemeViewController" customModule="MemeMe2" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -109,7 +109,7 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="bottomText" destination="i94-Ys-hbU" id="QV0-sq-zOX"/>
+                        <outlet property="bottomText" destination="i94-Ys-hbU" id="FO1-hk-6Fn"/>
                         <outlet property="cameraButton" destination="QXY-VO-j6C" id="QDb-7r-znc"/>
                         <outlet property="imageSelected" destination="7iy-bB-NvI" id="Iqa-y2-jYu"/>
                         <outlet property="instructionText" destination="x1J-tl-kYs" id="Fk3-wH-ctu"/>
@@ -173,7 +173,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bAe-oN-1Ye">
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bAe-oN-1Ye">
                                 <rect key="frame" x="0.0" y="20" width="600" height="44"/>
                                 <items>
                                     <barButtonItem title="Edit" id="tJy-q2-oQf"/>
@@ -187,10 +187,58 @@
                                     </barButtonItem>
                                 </items>
                             </toolbar>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="80" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Oer-ZY-WzE">
+                                <rect key="frame" x="0.0" y="64" width="600" height="487"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="MemeTableViewCell" rowHeight="80" id="EIZ-XD-Gq0" customClass="MemeTableViewCell" customModule="MemeMe2" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="600" height="80"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="EIZ-XD-Gq0" id="dQb-t3-C5t">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="79.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Hiv-oP-wS9">
+                                                    <rect key="frame" x="8" y="0.0" width="170" height="71.5"/>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OlU-Ae-pPn">
+                                                    <rect key="frame" x="324" y="8" width="42" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sMr-05-oKi">
+                                                    <rect key="frame" x="324" y="51" width="42" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="BottomText" destination="sMr-05-oKi" id="8Wo-oI-BS1"/>
+                                            <outlet property="TableCellImage" destination="Hiv-oP-wS9" id="2v6-bA-2Tl"/>
+                                            <outlet property="TopText" destination="OlU-Ae-pPn" id="jlG-MF-Nze"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Oer-ZY-WzE" firstAttribute="leading" secondItem="Zv0-dr-QXf" secondAttribute="leadingMargin" constant="-20" id="DbA-47-3kv"/>
+                            <constraint firstItem="bAe-oN-1Ye" firstAttribute="top" secondItem="JUA-Sy-bbT" secondAttribute="bottom" id="FBh-g6-4zl"/>
+                            <constraint firstItem="Oer-ZY-WzE" firstAttribute="top" secondItem="bAe-oN-1Ye" secondAttribute="bottom" id="Guu-o1-UUk"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Oer-ZY-WzE" secondAttribute="trailing" constant="-20" id="N4D-Kl-pHB"/>
+                            <constraint firstItem="bAe-oN-1Ye" firstAttribute="leading" secondItem="Zv0-dr-QXf" secondAttribute="leadingMargin" constant="-20" id="Yvh-ta-hQL"/>
+                            <constraint firstItem="oj4-eH-o0v" firstAttribute="top" secondItem="Oer-ZY-WzE" secondAttribute="bottom" id="aLF-oD-G2f"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="bAe-oN-1Ye" secondAttribute="trailing" constant="-20" id="dun-0s-nTY"/>
+                        </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="List View" image="ListViewImage" id="D25-Ux-0lr"/>
+                    <connections>
+                        <outlet property="TableView" destination="Oer-ZY-WzE" id="fSF-Ga-OpC"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KfA-U0-5IG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -220,6 +268,6 @@
         <image name="ListViewImage" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="gbe-VZ-r58"/>
+        <segue reference="xp3-7e-hRC"/>
     </inferredMetricsTieBreakers>
 </document>
