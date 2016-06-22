@@ -13,17 +13,7 @@ class MemeTableViewCell: UITableViewCell {
 
     
     @IBOutlet weak var TableCellImage: UIImageView!
-    @IBOutlet weak var TableCellTopText: UILabel!
-    @IBOutlet weak var TableCellBottomText: UILabel!
-    
-    
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        
-        
-    }
-    
-    
+    @IBOutlet weak var TableCellText: UILabel!
     
     
 }

@@ -1,6 +1,6 @@
 //
 //  ViewController.swift
-//  MemeMe1
+//  MemeMe2
 //
 //  Created by Geoffrey Ching on 2/21/16.
 //  Copyright © 2016 Geoffrey Ching. All rights reserved.
@@ -101,10 +101,12 @@ class CreateMemeViewController: UIViewController, UIImagePickerControllerDelegat
 	
 	
 	@IBAction func cancelReset(sender: AnyObject) {
-		doCancelReset()
+		doReset()
+        
+        dismissCreateMemeVC()
 	}
 	
-	func doCancelReset(){
+	func doReset(){
 		if(!imageSelected.hidden){
 			imageSelected.hidden = true
 			instructionText.hidden = false
@@ -153,12 +155,20 @@ class CreateMemeViewController: UIViewController, UIImagePickerControllerDelegat
 			if(completed){
 				let meme = MemeModel(image: self.imageSelected.image!, topText: self.topText.attributedText!.string, bottomText: self.bottomText.attributedText!.string, memeImage:  memedImage)
                 
-                (UIApplication.sharedApplication().delegate as! AppDelegate).memes.append(meme)
+                let object = UIApplication.sharedApplication().delegate
+                let appDelegate = object as! AppDelegate
+                appDelegate.memes.append(meme)
+                
+                self.dismissCreateMemeVC()
 			}
 		}
 		
 		self.presentViewController(aVC, animated: true, completion: nil)
 	}
+    
+    func dismissCreateMemeVC(){
+        self.presentingViewController?.dismissViewControllerAnimated(true, completion: nil)
+    }
 	
 	
 	func generateMemedImage() -> UIImage{
@@ -249,7 +259,7 @@ class CreateMemeViewController: UIViewController, UIImagePickerControllerDelegat
 	// UIImagePickerControllerDelegate
 	
 	func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage, editingInfo: [String : AnyObject]?) {
-		doCancelReset()
+		doReset()
 		
 		imageSelected.image = image
 		
