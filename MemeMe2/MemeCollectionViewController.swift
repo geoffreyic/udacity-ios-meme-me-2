@@ -11,66 +11,52 @@ import UIKit
 
 class MemeCollectionViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate{
     
-    @IBOutlet weak var MemeCollectionFlowLayout: UICollectionViewFlowLayout!
-    @IBOutlet weak var CollectionView: UICollectionView!
+    @IBOutlet weak var memeCollectionFlowLayout: UICollectionViewFlowLayout!
+    @IBOutlet weak var collectionView: UICollectionView!
     
-    var MemeList: [MemeModel] = []
+    var memeList: [MemeModel] {
+        return (UIApplication.sharedApplication().delegate as! AppDelegate).memes
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        updateMemeList()
-        
         sizeAndSpaceItems(self.view.frame.size)
+        
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
-        
-        updateMemeList()
-        CollectionView.reloadData()
+        collectionView.reloadData()
     }
     
     // sizing
     
     func sizeAndSpaceItems(size: CGSize){
         
-        var itemsInRow: CGFloat
-        
-        if(size.width > size.height){
-            itemsInRow = 5.0
-        }else{
-            itemsInRow = 3.0
-        }
-        
+        let itemsInRow:CGFloat = size.width > size.height ? 5.0 : 3.0
+      
         let space: CGFloat = 6.0
         let itemDimension = (size.width - itemsInRow*space-space) / itemsInRow
         
-        MemeCollectionFlowLayout.sectionInset = UIEdgeInsetsMake(space, space, space, space)
+        memeCollectionFlowLayout.sectionInset = UIEdgeInsetsMake(space, space, space, space)
         
-        MemeCollectionFlowLayout.minimumLineSpacing = space
-        MemeCollectionFlowLayout.minimumInteritemSpacing = space
+        memeCollectionFlowLayout.minimumLineSpacing = space
+        memeCollectionFlowLayout.minimumInteritemSpacing = space
         
-        MemeCollectionFlowLayout.itemSize = CGSizeMake(itemDimension, itemDimension)
-    }
-    
-    
-    // Meme List logic
-    
-    func updateMemeList(){
-        MemeList = (UIApplication.sharedApplication().delegate as! AppDelegate).memes
+        memeCollectionFlowLayout.itemSize = CGSizeMake(itemDimension, itemDimension)
     }
     
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return MemeList.count
+        return memeList.count
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("MemeCollectionViewCell", forIndexPath: indexPath) as! MemeCollectionViewCell
         
-        cell.CollectionCellImage.image = MemeList[indexPath.row].memeImage
+        cell.collectionCellImage.image = memeList[indexPath.row].memeImage
         
         return cell
     }
@@ -78,7 +64,7 @@ class MemeCollectionViewController: UIViewController, UICollectionViewDataSource
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         let detailVC: MemeDetailViewController = self.storyboard!.instantiateViewControllerWithIdentifier("DetailController") as! MemeDetailViewController
         
-        detailVC.Meme = MemeList[indexPath.row]
+        detailVC.meme = memeList[indexPath.row]
         
         self.navigationController!.pushViewController(detailVC, animated: true)
     }
@@ -86,6 +72,11 @@ class MemeCollectionViewController: UIViewController, UICollectionViewDataSource
     
     // catch device rotations
     override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
+        
+        // check if view hasn't been initialized yet. no need to do anything with
+        if(collectionView == nil){
+            return;
+        }
         
         print(size)
         

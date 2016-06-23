@@ -1,6 +1,6 @@
 //
 //  AppDelegate.swift
-//  MemeMe2
+//  MemeMe1
 //
 //  Created by Geoffrey Ching on 2/21/16.
 //  Copyright © 2016 Geoffrey Ching. All rights reserved.

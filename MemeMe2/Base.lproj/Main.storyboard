@@ -188,7 +188,7 @@
                                             <constraint firstItem="Iml-u7-5pp" firstAttribute="bottom" secondItem="Fb1-00-U2r" secondAttribute="bottomMargin" constant="8" id="ZF7-Q8-neK"/>
                                         </constraints>
                                         <connections>
-                                            <outlet property="CollectionCellImage" destination="Iml-u7-5pp" id="lpE-xk-CaQ"/>
+                                            <outlet property="collectionCellImage" destination="Iml-u7-5pp" id="1cF-Lm-DTH"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
@@ -217,8 +217,8 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="CollectionView" destination="uVm-JD-Fak" id="9Ww-FJ-VEq"/>
-                        <outlet property="MemeCollectionFlowLayout" destination="djN-he-Eoa" id="FA2-qj-8ai"/>
+                        <outlet property="collectionView" destination="uVm-JD-Fak" id="F2b-0K-pMk"/>
+                        <outlet property="memeCollectionFlowLayout" destination="djN-he-Eoa" id="NZ6-zI-2KO"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="C6Y-zV-yoO" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -250,7 +250,7 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="MemeImage" destination="kyB-ru-gab" id="3DP-ig-Zfh"/>
+                        <outlet property="memeImage" destination="kyB-ru-gab" id="Jfn-4M-iZa"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5dv-uZ-atd" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -303,8 +303,8 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="TableCellImage" destination="Hiv-oP-wS9" id="2v6-bA-2Tl"/>
-                                            <outlet property="TableCellText" destination="OlU-Ae-pPn" id="UEr-lh-GfQ"/>
+                                            <outlet property="tableCellImage" destination="Hiv-oP-wS9" id="FaA-iY-eQC"/>
+                                            <outlet property="tableCellText" destination="OlU-Ae-pPn" id="lvn-O0-wD8"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -338,8 +338,8 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="EditCancelButton" destination="tJy-q2-oQf" id="YxK-cP-Evm"/>
-                        <outlet property="TableView" destination="Oer-ZY-WzE" id="fSF-Ga-OpC"/>
+                        <outlet property="editCancelButton" destination="tJy-q2-oQf" id="chb-dN-1BQ"/>
+                        <outlet property="tableView" destination="Oer-ZY-WzE" id="haM-GB-7ih"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KfA-U0-5IG" userLabel="First Responder" sceneMemberID="firstResponder"/>

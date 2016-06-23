@@ -11,29 +11,29 @@ import UIKit
 
 class MemeListViewController: UIViewController, UITableViewDataSource, UITableViewDelegate{
     
-    @IBOutlet weak var TableView: UITableView!
-    @IBOutlet weak var EditCancelButton: UIBarButtonItem!
+    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var editCancelButton: UIBarButtonItem!
     
-    var IsEditing: Bool = false;
-    var MemeList: [MemeModel] = []
+    var isEditingTable: Bool = false;
+    
+    var memeList: [MemeModel] {
+        return (UIApplication.sharedApplication().delegate as! AppDelegate).memes
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        updateMemeList()
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
-        
-        updateMemeList()
-        TableView.reloadData()
+        tableView.reloadData()
     }
     
     
     @IBAction func EditCancelButtonPressed(sender: AnyObject) {
-        if(!IsEditing){
+        if(!isEditingTable){
             beginEditing()
         }else{
             endEditing()
@@ -41,37 +41,29 @@ class MemeListViewController: UIViewController, UITableViewDataSource, UITableVi
     }
     
     
-    // Meme List logic
-    
-    func updateMemeList(){
-        MemeList = (UIApplication.sharedApplication().delegate as! AppDelegate).memes
-    }
-    
     
     // Editing functions
     
     func beginEditing(){
-        IsEditing = true
+        isEditingTable = true
         
-        EditCancelButton.title = "Cancel"
+        editCancelButton.title = "Cancel"
         
-        TableView.editing = true
+        tableView.editing = true
         
     }
     
     func endEditing(){
-        IsEditing = false
+        isEditingTable = false
         
-        EditCancelButton.title = "Edit"
+        editCancelButton.title = "Edit"
         
-        TableView.editing = false
+        tableView.editing = false
         
     }
     
     func deleteItem(index: Int){
         (UIApplication.sharedApplication().delegate as! AppDelegate).memes.removeAtIndex(index)
-        
-        updateMemeList()
     }
     
     
@@ -83,14 +75,14 @@ class MemeListViewController: UIViewController, UITableViewDataSource, UITableVi
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return MemeList.count
+        return memeList.count
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("MemeTableViewCell", forIndexPath: indexPath) as! MemeTableViewCell
         
-        cell.TableCellImage.image = MemeList[indexPath.row].memeImage
-        cell.TableCellText.text = MemeList[indexPath.row].topText + "..." + MemeList[indexPath.row].bottomText
+        cell.tableCellImage.image = memeList[indexPath.row].memeImage
+        cell.tableCellText.text = memeList[indexPath.row].topText + "..." + memeList[indexPath.row].bottomText
         
         return cell
     }
@@ -107,14 +99,14 @@ class MemeListViewController: UIViewController, UITableViewDataSource, UITableVi
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let detailVC: MemeDetailViewController = self.storyboard!.instantiateViewControllerWithIdentifier("DetailController") as! MemeDetailViewController
 
-        detailVC.Meme = MemeList[indexPath.row]
+        detailVC.meme = memeList[indexPath.row]
         
         self.navigationController!.pushViewController(detailVC, animated: true)
     
     }
     
     func tableView(tableView: UITableView, editingStyleForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCellEditingStyle {
-        if self.TableView.editing {
+        if self.tableView.editing {
             return .Delete
         }
         return .None

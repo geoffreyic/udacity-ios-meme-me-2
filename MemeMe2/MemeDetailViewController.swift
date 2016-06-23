@@ -10,14 +10,14 @@ import UIKit
 
 class MemeDetailViewController: UIViewController {
     
-    @IBOutlet weak var MemeImage: UIImageView!
+    @IBOutlet weak var memeImage: UIImageView!
     
-    var Meme: MemeModel!
+    var meme: MemeModel!
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        MemeImage.image = Meme.memeImage
+        memeImage.image = meme.memeImage
         
         // Do any additional setup after loading the view.
     }
@@ -25,10 +25,6 @@ class MemeDetailViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
-    }
-    
-    @IBAction func CancelAction(sender: AnyObject) {
-        self.presentingViewController?.dismissViewControllerAnimated(true, completion: nil)
     }
 
     /*

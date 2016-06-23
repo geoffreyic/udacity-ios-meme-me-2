@@ -12,8 +12,8 @@ import UIKit
 class MemeTableViewCell: UITableViewCell {
 
     
-    @IBOutlet weak var TableCellImage: UIImageView!
-    @IBOutlet weak var TableCellText: UILabel!
+    @IBOutlet weak var tableCellImage: UIImageView!
+    @IBOutlet weak var tableCellText: UILabel!
     
     
 }
